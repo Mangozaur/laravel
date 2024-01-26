@@ -41,19 +41,21 @@ docker-compose up -d
 docker-compose exec -w /local/www app sh -c 'rm -rf public && composer create-project laravel/laravel .'
 ```
 
-**Init composer for new project**
-```
-docker-compose exec -w /local/www app sh -c 'composer init --no-interaction --type project --name php/app --require "laravel/laravel:>=8.0"' -a
-```
-
-**Install dependencies (for existing project)**:
-```
-docker-compose exec -w /local/www app composer install
-docker-compose exec -w /local/www app php artisan key:generate
-```
-
 **Prepare .env**
-Copy files from `/docker/www/` to `/www/`. Set correct IMAGE_HOST variable value in `/www/.env` - it should be same as in `/docker/.env`.
+Set up correct values in `/www/.env` file.
+
+DB_CONNECTION=mysql
+DB_HOST=*${IMAGE_NAME}*-mysql
+DB_PORT=3306
+DB_DATABASE=App
+DB_USERNAME=root
+DB_PASSWORD=root
+
+*${IMAGE_NAME}* is the same name as in docker/.env
+
+```
+docker-compose exec -w /local/www app sh -c 'composer require "laravel/ui:>=2.0.0" && composer require "barryvdh/laravel-debugbar:>=3.1" --dev'
+```
 
 **Run initial migrations**: 
 ```
