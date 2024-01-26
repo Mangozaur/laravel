@@ -42,7 +42,8 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php -- --inst
 COPY php /
 
 RUN mkdir /local/www/  \
-    && chown -R www-data:www-data /local/www/
+    && chown -R www-data:www-data /local/www \
+    && chown -R www-data:www-data /home/www-data
 
 USER www-data
 VOLUME /local/www

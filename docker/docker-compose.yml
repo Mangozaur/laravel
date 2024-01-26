@@ -10,14 +10,14 @@ services:
     image: mariadb:10.8
     restart: on-failure
     environment:
-      MYSQL_DATABASE: 'Pantheon'
+      MYSQL_DATABASE: 'App'
       MYSQL_ROOT_PASSWORD: 'root'
     volumes:
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
-      - '3306:3306'
+      - '3307:3306'
     expose:
-      - '3306'
+      - '3307'
     container_name: "${IMAGE_NAME}-mysql"
     tty: true
   memcache:

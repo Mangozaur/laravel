@@ -1,7 +1,7 @@
 export APP_ENV='local'
 alias artisan='php /local/www/artisan'
 
-export PS1="\[\033[m\]\[\033[36m\]\u\[\033[m\]@\[\033[36m\]pantheon.dev\[\033[m\]:\[\033[34m\]\w\[\033[m\] "
+export PS1="\[\033[m\]\[\033[36m\]\u\[\033[m\]@\[\033[36m\]php-app.dev\[\033[m\]:\[\033[34m\]\w\[\033[m\] "
 export PATH="/var/www/.composer/vendor/bin:$PATH"
 
 function checkService()

@@ -28,16 +28,32 @@ docker-compose run --rm --entrypoint npm node install
 docker-compose run --rm --entrypoint npm node audit fix
 ```
 
+**Config Docker**
+Add path to the app folder to the Docker permissions first. Open "Settings" -> "Resources" -> "File sharing", add path to the app directory. Restart Docker.
+
 **Start containers**:
 ```
 docker-compose up -d
 ```
 
-**Init app**:
+**Create new Laravel project**
+```
+docker-compose exec -w /local/www app sh -c 'rm -rf public && composer create-project laravel/laravel .'
+```
+
+**Init composer for new project**
+```
+docker-compose exec -w /local/www app sh -c 'composer init --no-interaction --type project --name php/app --require "laravel/laravel:>=8.0"' -a
+```
+
+**Install dependencies (for existing project)**:
 ```
 docker-compose exec -w /local/www app composer install
 docker-compose exec -w /local/www app php artisan key:generate
 ```
+
+**Prepare .env**
+Copy files from `/docker/www/` to `/www/`. Set correct IMAGE_HOST variable value in `/www/.env` - it should be same as in `/docker/.env`.
 
 **Run initial migrations**: 
 ```
