@@ -18,16 +18,6 @@ docker-compose build
 docker-compose up --no-start
 ```
 
-**Install nodejs modules**: 
-```
-docker-compose run --rm --entrypoint npm node install
-```
-
-**Apply security fixes to modules (if you want)**: 
-```
-docker-compose run --rm --entrypoint npm node audit fix
-```
-
 **Config Docker**
 Add path to the app folder to the Docker permissions first. Open "Settings" -> "Resources" -> "File sharing", add path to the app directory. Restart Docker.
 
@@ -60,6 +50,16 @@ docker-compose exec -w /local/www app sh -c 'composer require "laravel/ui:>=2.0.
 **Run initial migrations**: 
 ```
 docker-compose exec -w /local/www app php artisan migrate:refresh --seed
+```
+
+**Install nodejs modules**:
+```
+docker-compose run --rm --entrypoint npm node install
+```
+
+**Apply security fixes to modules (if you want)**:
+```
+docker-compose run --rm --entrypoint npm node audit fix
 ```
 
 **HTTPS**:

@@ -29,11 +29,13 @@ services:
   node:
     image: node:latest
     container_name: "${IMAGE_NAME}-node"
-    restart: on-failure
+    restart: no
     tty: true
     volumes:
       - ../www:/local/www
     working_dir: /local/www
+    ports:
+      - "127.0.0.1:5173:5173"
     environment:
       NODE_OPTIONS: "--openssl-legacy-provider"
     entrypoint: ['npm', 'run', 'watch']
