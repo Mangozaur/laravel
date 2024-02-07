@@ -38,7 +38,7 @@ services:
       - "127.0.0.1:5173:5173"
     environment:
       NODE_OPTIONS: "--openssl-legacy-provider"
-    entrypoint: ['npm', 'run', 'watch']
+    entrypoint: ['npm', 'run', 'dev']
   nginx:
     build:
       context: .

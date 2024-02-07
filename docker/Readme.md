@@ -52,6 +52,8 @@ docker-compose exec -w /local/www app sh -c 'composer require "laravel/ui:>=2.0.
 docker-compose exec -w /local/www app php artisan migrate:refresh --seed
 ```
 
+INSTALL VUE HERE
+
 **Install nodejs modules**:
 ```
 docker-compose run --rm --entrypoint npm node install
